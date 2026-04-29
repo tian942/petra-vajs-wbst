@@ -62,19 +62,24 @@ function Navigation() {
         justifyContent: "space-between",
         height: "70px",
       }}>
-        {/* Logo / Name */}
+        {/* Logo / Signature */}
         <a
           href="#domov"
           style={{
             textDecoration: "none",
-            color: "#3D5240",
-            fontFamily: "'Gadugi', 'Trebuchet MS', sans-serif",
-            fontSize: "1.05rem",
-            letterSpacing: "0.08em",
-            fontWeight: 400,
+            display: "flex",
+            alignItems: "center",
           }}
         >
-          PETRA VAJS
+          <img
+            src="/manus-storage/petra-podpis_7d66b015.png"
+            alt="Petra Vajs"
+            style={{
+              height: "42px",
+              opacity: 0.75,
+              mixBlendMode: "multiply",
+            }}
+          />
         </a>
 
         {/* Desktop nav links */}
@@ -259,11 +264,11 @@ function HeroSection() {
       >
         {/* Left: Text + signature */}
         <div style={{ paddingTop: "2rem", paddingBottom: "2rem" }}>
-          <p className="section-label" style={{ marginBottom: "1.5rem" }}>
+          <p className="section-label hero-label" style={{ marginBottom: "1.5rem" }}>
             Psihoterapija in svetovanje
           </p>
 
-          <h1 style={{
+          <h1 className="hero-name" style={{
             fontFamily: "'Gadugi', 'Trebuchet MS', 'Cormorant Garamond', serif",
             fontSize: "clamp(2.8rem, 5vw, 4.5rem)",
             color: "#3D5240",
@@ -274,7 +279,7 @@ function HeroSection() {
           }}>
             Petra
           </h1>
-          <h1 style={{
+          <h1 className="hero-name" style={{
             fontFamily: "'Gadugi', 'Trebuchet MS', 'Cormorant Garamond', serif",
             fontSize: "clamp(2.8rem, 5vw, 4.5rem)",
             color: "#3D5240",
@@ -286,7 +291,7 @@ function HeroSection() {
             Vajs
           </h1>
 
-          <p style={{
+          <p className="hero-subtitle" style={{
             fontFamily: "'Gadugi', 'Trebuchet MS', sans-serif",
             fontSize: "0.85rem",
             letterSpacing: "0.15em",
@@ -296,7 +301,7 @@ function HeroSection() {
           }}>
             Univ. dipl. soc. del.
           </p>
-          <p style={{
+          <p className="hero-subtitle" style={{
             fontFamily: "'Gadugi', 'Trebuchet MS', sans-serif",
             fontSize: "0.85rem",
             letterSpacing: "0.1em",
@@ -307,7 +312,7 @@ function HeroSection() {
           </p>
 
           {/* Signature */}
-          <div style={{ marginBottom: "2.5rem" }}>
+          <div className="hero-sig" style={{ marginBottom: "2.5rem" }}>
             <img
               src="/manus-storage/petra-podpis_7d66b015.png"
               alt="Podpis Petre Vajs"
@@ -319,7 +324,7 @@ function HeroSection() {
             />
           </div>
 
-          <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
+          <div className="hero-btns" style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
             <a href="#kontakt" className="btn-sage">
               Naroči se
             </a>
@@ -636,12 +641,43 @@ function MojaPotSection() {
           padding: "0 3rem",
         }}
       >
-        <p className="section-label">O meni</p>
-        <h2 className="section-title" style={{ maxWidth: "500px" }}>
-          Moja pot
-        </h2>
-
         <div style={{
+          display: "grid",
+          gridTemplateColumns: "1fr 2fr",
+          gap: "5rem",
+          alignItems: "start",
+          marginBottom: "4rem",
+        }}
+        className="mojapot-header-grid"
+        >
+          <div>
+            <p className="section-label">O meni</p>
+            <h2 className="section-title">
+              Moja pot
+            </h2>
+          </div>
+          <div style={{
+            position: "relative",
+            borderRadius: "2px",
+            overflow: "hidden",
+            maxHeight: "500px",
+          }}>
+            <img
+              src="/manus-storage/petra-foto3_94c37d70.jpg"
+              alt="Petra Vajs — o meni"
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                objectPosition: "center top",
+                display: "block",
+                maxHeight: "500px",
+              }}
+            />
+          </div>
+        </div>
+
+          <div style={{
           display: "grid",
           gridTemplateColumns: "1fr 1fr",
           gap: "4rem",
@@ -715,6 +751,10 @@ function MojaPotSection() {
           .mojapot-grid {
             grid-template-columns: 1fr !important;
             gap: 1.5rem !important;
+          }
+          .mojapot-header-grid {
+            grid-template-columns: 1fr !important;
+            gap: 2rem !important;
           }
         }
         @media (max-width: 1024px) {
