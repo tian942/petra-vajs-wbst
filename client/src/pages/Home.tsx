@@ -75,9 +75,10 @@ function Navigation() {
             src="/manus-storage/petra-podpis_7d66b015.png"
             alt="Petra Vajs"
             style={{
-              height: "42px",
-              opacity: 0.75,
+              height: "64px",
+              opacity: 0.85,
               mixBlendMode: "multiply",
+              background: "transparent",
             }}
           />
         </a>
@@ -310,19 +311,6 @@ function HeroSection() {
           }}>
             Specializantka integrativne psihoterapije pod supervizijo
           </p>
-
-          {/* Signature */}
-          <div className="hero-sig" style={{ marginBottom: "2.5rem" }}>
-            <img
-              src="/manus-storage/petra-podpis_7d66b015.png"
-              alt="Podpis Petre Vajs"
-              style={{
-                width: "160px",
-                opacity: 0.65,
-                mixBlendMode: "multiply",
-              }}
-            />
-          </div>
 
           <div className="hero-btns" style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
             <a href="#kontakt" className="btn-sage">
