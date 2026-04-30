@@ -249,65 +249,134 @@ function HeroSection() {
         alignItems: "stretch",
         paddingTop: "70px",
         overflow: "hidden",
+        position: "relative",
       }}
     >
+      {/* Soft organic background blobs */}
+      <div style={{
+        position: "absolute",
+        inset: 0,
+        pointerEvents: "none",
+        zIndex: 0,
+        overflow: "hidden",
+      }}>
+        {/* Large warm blob top-left */}
+        <div style={{
+          position: "absolute",
+          top: "-10%",
+          left: "-8%",
+          width: "55vw",
+          height: "55vw",
+          maxWidth: "700px",
+          maxHeight: "700px",
+          borderRadius: "60% 40% 55% 45% / 50% 60% 40% 50%",
+          background: "radial-gradient(ellipse at center, rgba(232,221,212,0.55) 0%, rgba(250,248,245,0) 70%)",
+          filter: "blur(40px)",
+        }} />
+        {/* Medium taupe blob center-right */}
+        <div style={{
+          position: "absolute",
+          top: "30%",
+          right: "-5%",
+          width: "35vw",
+          height: "35vw",
+          maxWidth: "450px",
+          maxHeight: "450px",
+          borderRadius: "45% 55% 40% 60% / 55% 45% 60% 40%",
+          background: "radial-gradient(ellipse at center, rgba(200,185,168,0.30) 0%, rgba(250,248,245,0) 70%)",
+          filter: "blur(50px)",
+        }} />
+        {/* Small warm blob bottom-left */}
+        <div style={{
+          position: "absolute",
+          bottom: "5%",
+          left: "15%",
+          width: "25vw",
+          height: "25vw",
+          maxWidth: "320px",
+          maxHeight: "320px",
+          borderRadius: "50% 50% 60% 40% / 40% 60% 50% 50%",
+          background: "radial-gradient(ellipse at center, rgba(224,212,200,0.40) 0%, rgba(250,248,245,0) 70%)",
+          filter: "blur(35px)",
+        }} />
+      </div>
+
       <div style={{
         maxWidth: "1200px",
         margin: "0 auto",
         width: "100%",
         display: "grid",
         gridTemplateColumns: "1fr 1fr",
-        alignItems: "center",
-        padding: "0 3rem",
-        gap: "4rem",
+        alignItems: "stretch",
+        padding: "0 0 0 4rem",
+        gap: "0",
+        position: "relative",
+        zIndex: 1,
       }}
       className="hero-grid"
       >
-        {/* Left: Text + signature */}
-        <div className="hero-text-col" style={{ paddingTop: "2rem", paddingBottom: "2rem" }}>
-          <p className="section-label hero-label" style={{ marginBottom: "1.5rem" }}>
+        {/* Left: Text */}
+        <div className="hero-text-col" style={{
+          paddingTop: "4rem",
+          paddingBottom: "4rem",
+          paddingRight: "3rem",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+        }}>
+          <p className="section-label hero-label" style={{ marginBottom: "2rem" }}>
             Psihoterapija in svetovanje
           </p>
 
           <h1 className="hero-name" style={{
-            fontFamily: "'Gadugi', 'Trebuchet MS', 'Cormorant Garamond', serif",
-            fontSize: "clamp(2.8rem, 5vw, 4.5rem)",
+            fontFamily: "'Gadugi', 'Trebuchet MS', serif",
+            fontSize: "clamp(3.2rem, 5.5vw, 5.5rem)",
             color: "#3D5240",
             fontWeight: 300,
-            lineHeight: 1.1,
-            marginBottom: "0.5rem",
-            letterSpacing: "-0.01em",
+            lineHeight: 1.0,
+            marginBottom: "0",
+            letterSpacing: "-0.02em",
           }}>
             Petra
           </h1>
           <h1 className="hero-name" style={{
-            fontFamily: "'Gadugi', 'Trebuchet MS', 'Cormorant Garamond', serif",
-            fontSize: "clamp(2.8rem, 5vw, 4.5rem)",
+            fontFamily: "'Gadugi', 'Trebuchet MS', serif",
+            fontSize: "clamp(3.2rem, 5.5vw, 5.5rem)",
             color: "#3D5240",
             fontWeight: 300,
-            lineHeight: 1.1,
-            marginBottom: "2rem",
-            letterSpacing: "-0.01em",
+            lineHeight: 1.0,
+            marginBottom: "2.5rem",
+            letterSpacing: "-0.02em",
           }}>
             Vajs
           </h1>
 
+          {/* Warm divider line */}
+          <div style={{
+            width: "3rem",
+            height: "1.5px",
+            backgroundColor: "#C8B9A8",
+            marginBottom: "2rem",
+          }} className="hero-label" />
+
           <p className="hero-subtitle" style={{
             fontFamily: "'Gadugi', 'Trebuchet MS', sans-serif",
-            fontSize: "0.85rem",
-            letterSpacing: "0.15em",
+            fontSize: "0.8rem",
+            letterSpacing: "0.18em",
             textTransform: "uppercase",
             color: "#9E8E7A",
-            marginBottom: "0.5rem",
+            marginBottom: "0.6rem",
           }}>
             Univ. dipl. soc. del.
           </p>
           <p className="hero-subtitle" style={{
             fontFamily: "'Gadugi', 'Trebuchet MS', sans-serif",
-            fontSize: "0.85rem",
-            letterSpacing: "0.1em",
-            color: "#7A7A7A",
-            marginBottom: "2.5rem",
+            fontSize: "1rem",
+            letterSpacing: "0.02em",
+            color: "#5A5A5A",
+            marginBottom: "3rem",
+            lineHeight: 1.6,
+            maxWidth: "340px",
           }}>
             Specializantka integrativne psihoterapije pod supervizijo
           </p>
@@ -322,11 +391,11 @@ function HeroSection() {
           </div>
         </div>
 
-        {/* Right: Photo */}
+        {/* Right: Full-height photo, no crop */}
         <div style={{
           position: "relative",
           height: "calc(100vh - 70px)",
-          minHeight: "500px",
+          minHeight: "560px",
           overflow: "hidden",
         }}
         className="hero-photo-wrap"
@@ -338,18 +407,28 @@ function HeroSection() {
               width: "100%",
               height: "100%",
               objectFit: "cover",
-              objectPosition: "center top",
+              objectPosition: "50% 15%",
               display: "block",
             }}
           />
-          {/* Subtle gradient overlay on left edge */}
+          {/* Soft left-edge blend into background */}
           <div style={{
             position: "absolute",
             top: 0,
             left: 0,
             bottom: 0,
-            width: "80px",
-            background: "linear-gradient(to right, #FAF8F5, transparent)",
+            width: "120px",
+            background: "linear-gradient(to right, #FAF8F5 0%, transparent 100%)",
+            pointerEvents: "none",
+          }} />
+          {/* Soft bottom fade */}
+          <div style={{
+            position: "absolute",
+            bottom: 0,
+            left: 0,
+            right: 0,
+            height: "80px",
+            background: "linear-gradient(to top, #FAF8F5 0%, transparent 100%)",
             pointerEvents: "none",
           }} />
         </div>
@@ -365,19 +444,18 @@ function HeroSection() {
             align-items: start !important;
           }
           .hero-text-col {
-            padding: 2rem 1.5rem 2rem !important;
+            padding: 3rem 1.5rem 2rem !important;
             order: 1;
           }
           .hero-photo-wrap {
             order: 2;
-            height: 85vw !important;
-            min-height: 320px !important;
-            max-height: 480px !important;
+            height: 100vw !important;
+            min-height: 340px !important;
+            max-height: 520px !important;
             width: 100% !important;
-            border-radius: 0 !important;
           }
           .hero-photo-wrap img {
-            object-position: center 15% !important;
+            object-position: 50% 10% !important;
           }
         }
       `}</style>
@@ -416,17 +494,19 @@ function PoslanstvoSection() {
           position: "relative",
           borderRadius: "2px",
           overflow: "hidden",
-          aspectRatio: "3/4",
-          maxHeight: "600px",
+          aspectRatio: "2/3",
+          width: "100%",
         }}>
           <img
             src="/manus-storage/petra-foto2_6bea705e.jpg"
             alt="Petra Vajs — psihoterapevtka v stolu"
             style={{
+              position: "absolute",
+              inset: 0,
               width: "100%",
               height: "100%",
               objectFit: "cover",
-              objectPosition: "center top",
+              objectPosition: "center 20%",
               display: "block",
             }}
           />
@@ -640,50 +720,45 @@ function MojaPotSection() {
           padding: "0 3rem",
         }}
       >
+        {/* Header label */}
+        <div style={{ marginBottom: "3rem" }}>
+          <p className="section-label">O meni</p>
+          <h2 className="section-title">Moja pot</h2>
+        </div>
+
+        {/* Two-column: photo left, text right */}
         <div style={{
           display: "grid",
-          gridTemplateColumns: "1fr 2fr",
+          gridTemplateColumns: "1fr 1.4fr",
           gap: "5rem",
           alignItems: "start",
-          marginBottom: "4rem",
         }}
-        className="mojapot-header-grid"
+        className="mojapot-grid"
         >
-          <div>
-            <p className="section-label">O meni</p>
-            <h2 className="section-title">
-              Moja pot
-            </h2>
-          </div>
+          {/* Photo column */}
           <div style={{
             position: "relative",
             borderRadius: "2px",
             overflow: "hidden",
-            maxHeight: "600px",
+            aspectRatio: "2/3",
+            width: "100%",
           }}>
             <img
               src="/manus-storage/petra-foto3_94c37d70.jpg"
               alt="Petra Vajs — o meni"
               style={{
+                position: "absolute",
+                inset: 0,
                 width: "100%",
                 height: "100%",
                 objectFit: "cover",
-                objectPosition: "center top",
+                objectPosition: "center 15%",
                 display: "block",
-              maxHeight: "600px",
-            }}
+              }}
             />
           </div>
-        </div>
 
-          <div style={{
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr",
-          gap: "4rem",
-          marginTop: "1rem",
-        }}
-        className="mojapot-grid"
-        >
+          {/* Text column */}
           <div>
             <p style={{ lineHeight: 1.9, color: "#3A3A3A", marginBottom: "1.5rem" }}>
               Že zelo zgodaj sem v sebi začutila ljubezen do dela z ljudmi — biti ob njih
@@ -708,9 +783,7 @@ function MojaPotSection() {
               spoštljivem in iskrenem odnosu. Verjamem v moč jasnosti tudi takrat, ko se
               znajdemo v notranjem kaosu ter v pomen sočutne, a hkrati iskrene komunikacije.
             </p>
-          </div>
 
-          <div>
             <p style={{ lineHeight: 1.9, color: "#3A3A3A", marginBottom: "1.5rem" }}>
               Radovednost in želja po razumevanju globin človeške notranjosti sta me
               vodili do študija psihoterapije. Svoje znanje sem nadgradila z izobraževanjem
