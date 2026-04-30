@@ -274,4 +274,133 @@
     background-color: #3D5240;
     margin: 1.5rem 0;
   }
+
+  /* ── GLOBAL RESPONSIVE RULES ─────────────────────────────── */
+
+  /* Desktop: bigger signature in header */
+  @media (min-width: 769px) {
+    nav img[alt="Petra Vajs"] {
+      height: 80px !important;
+    }
+  }
+
+  /* Mobile: all sections get proper padding */
+  @media (max-width: 768px) {
+    /* Section padding reduced */
+    section {
+      padding-top: 4rem !important;
+      padding-bottom: 4rem !important;
+    }
+
+    /* All inner section containers */
+    .fade-in-up {
+      padding-left: 1.5rem !important;
+      padding-right: 1.5rem !important;
+    }
+
+    /* Poslanstvo grid: stack vertically */
+    .poslanstvo-grid {
+      grid-template-columns: 1fr !important;
+      padding-left: 1.5rem !important;
+      padding-right: 1.5rem !important;
+      gap: 2.5rem !important;
+    }
+
+    /* Integrativna grid: stack vertically */
+    .integrativna-inner-grid {
+      grid-template-columns: 1fr !important;
+      padding-left: 1.5rem !important;
+      padding-right: 1.5rem !important;
+      gap: 2rem !important;
+    }
+
+    /* Moja pot grids: stack vertically */
+    .mojapot-header-grid {
+      grid-template-columns: 1fr !important;
+      gap: 2rem !important;
+    }
+    .mojapot-grid {
+      grid-template-columns: 1fr !important;
+      gap: 1.5rem !important;
+    }
+
+    /* Kako poteka grid: stack vertically */
+    .kako-grid {
+      grid-template-columns: 1fr !important;
+    }
+
+    /* Cenik grid: stack vertically */
+    .cenik-grid {
+      grid-template-columns: 1fr !important;
+      max-width: 100% !important;
+    }
+
+    /* Kontakt grid: stack vertically */
+    .kontakt-grid {
+      grid-template-columns: 1fr !important;
+      padding-left: 1.5rem !important;
+      padding-right: 1.5rem !important;
+      gap: 3rem !important;
+    }
+
+    /* Footer: stack vertically, center */
+    footer > div {
+      flex-direction: column !important;
+      text-align: center !important;
+      padding-left: 1.5rem !important;
+      padding-right: 1.5rem !important;
+    }
+    footer > div > div:last-child {
+      text-align: center !important;
+    }
+
+    /* O meni photo: full width, taller on mobile */
+    .mojapot-header-grid > div:last-child {
+      max-height: 70vw !important;
+      min-height: 260px !important;
+    }
+
+    /* Vertical dividers: hide on mobile */
+    .divider-v {
+      display: none !important;
+    }
+
+    /* Lokacija info: stack vertically */
+    .kako-lokacija {
+      flex-direction: column !important;
+      gap: 1rem !important;
+    }
+
+    /* Buttons: full width on mobile */
+    .hero-btns {
+      flex-direction: column !important;
+    }
+    .hero-btns a {
+      text-align: center !important;
+      width: 100% !important;
+    }
+
+    /* Section titles: smaller on mobile */
+    .section-title {
+      font-size: 1.5rem !important;
+    }
+  }
+
+  /* Tablet adjustments */
+  @media (min-width: 769px) and (max-width: 1024px) {
+    .fade-in-up {
+      padding-left: 2rem !important;
+      padding-right: 2rem !important;
+    }
+    .poslanstvo-grid {
+      padding-left: 2rem !important;
+      padding-right: 2rem !important;
+      gap: 3rem !important;
+    }
+    .kontakt-grid {
+      padding-left: 2rem !important;
+      padding-right: 2rem !important;
+      gap: 3rem !important;
+    }
+  }
 }

@@ -264,7 +264,7 @@ function HeroSection() {
       className="hero-grid"
       >
         {/* Left: Text + signature */}
-        <div style={{ paddingTop: "2rem", paddingBottom: "2rem" }}>
+        <div className="hero-text-col" style={{ paddingTop: "2rem", paddingBottom: "2rem" }}>
           <p className="section-label hero-label" style={{ marginBottom: "1.5rem" }}>
             Psihoterapija in svetovanje
           </p>
@@ -359,14 +359,25 @@ function HeroSection() {
         @media (max-width: 768px) {
           .hero-grid {
             grid-template-columns: 1fr !important;
-            padding: 2rem 1.5rem !important;
-            gap: 2rem !important;
+            padding: 0 !important;
+            gap: 0 !important;
             min-height: auto !important;
+            align-items: start !important;
+          }
+          .hero-text-col {
+            padding: 2rem 1.5rem 2rem !important;
+            order: 1;
           }
           .hero-photo-wrap {
-            height: 60vw !important;
-            min-height: 280px !important;
-            border-radius: 4px;
+            order: 2;
+            height: 85vw !important;
+            min-height: 320px !important;
+            max-height: 480px !important;
+            width: 100% !important;
+            border-radius: 0 !important;
+          }
+          .hero-photo-wrap img {
+            object-position: center 15% !important;
           }
         }
       `}</style>
@@ -389,7 +400,7 @@ function PoslanstvoSection() {
     >
       <div
         ref={ref}
-        className="fade-in-up"
+        className="fade-in-up poslanstvo-grid"
         style={{
           maxWidth: "1200px",
           margin: "0 auto",
@@ -563,7 +574,7 @@ function IntegrativnaSection() {
     >
       <div
         ref={ref}
-        className="fade-in-up"
+        className="fade-in-up integrativna-inner-grid"
         style={{
           maxWidth: "1200px",
           margin: "0 auto",
@@ -596,7 +607,7 @@ function IntegrativnaSection() {
 
       <style>{`
         @media (max-width: 768px) {
-          .integrativna-grid {
+          .integrativna-inner-grid {
             grid-template-columns: 1fr !important;
             padding: 0 1.5rem !important;
             gap: 2rem !important;
@@ -648,7 +659,7 @@ function MojaPotSection() {
             position: "relative",
             borderRadius: "2px",
             overflow: "hidden",
-            maxHeight: "500px",
+            maxHeight: "600px",
           }}>
             <img
               src="/manus-storage/petra-foto3_94c37d70.jpg"
@@ -659,8 +670,8 @@ function MojaPotSection() {
                 objectFit: "cover",
                 objectPosition: "center top",
                 display: "block",
-                maxHeight: "500px",
-              }}
+              maxHeight: "600px",
+            }}
             />
           </div>
         </div>
@@ -1222,7 +1233,7 @@ function KontaktSection() {
     >
       <div
         ref={ref}
-        className="fade-in-up"
+        className="fade-in-up kontakt-grid"
         style={{
           maxWidth: "1200px",
           margin: "0 auto",
