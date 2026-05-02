@@ -489,8 +489,8 @@ function PoslanstvoSection() {
           alignItems: "center",
         }}
         >
-        {/* Photo */}
-        <div style={{
+        {/* Photo — on mobile appears below text via CSS order */}
+        <div className="poslanstvo-photo" style={{
           position: "relative",
           borderRadius: "2px",
           overflow: "hidden",
@@ -513,7 +513,7 @@ function PoslanstvoSection() {
         </div>
 
         {/* Text */}
-        <div>
+        <div className="poslanstvo-text">
           <p className="section-label">Poslanstvo</p>
           <h2 className="section-title">
             Varen prostor za vas
@@ -551,6 +551,12 @@ function PoslanstvoSection() {
             grid-template-columns: 1fr !important;
             padding: 0 1.5rem !important;
             gap: 2.5rem !important;
+          }
+          .poslanstvo-text {
+            order: 1;
+          }
+          .poslanstvo-photo {
+            order: 2;
           }
         }
       `}</style>
