@@ -32,8 +32,8 @@ function Navigation() {
 
   const links = [
     { label: "Domov", href: "#domov" },
-    { label: "Psihoterapija", href: "#psihoterapija" },
     { label: "O meni", href: "#o-meni" },
+    { label: "Psihoterapija", href: "#psihoterapija" },
     { label: "Kako poteka", href: "#kako-poteka" },
     { label: "Cenik", href: "#cenik" },
     { label: "Kontakt", href: "#kontakt" },
@@ -60,7 +60,7 @@ function Navigation() {
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
-        height: "70px",
+        height: "80px",
       }}>
         {/* Logo / Signature */}
         <a
@@ -75,10 +75,12 @@ function Navigation() {
             src="/manus-storage/petra-podpis_7d66b015.png"
             alt="Petra Vajs"
             style={{
-              height: "64px",
-              opacity: 0.85,
+              height: "72px",
+              opacity: 1,
               mixBlendMode: "multiply",
               background: "transparent",
+              imageRendering: "crisp-edges",
+              filter: "contrast(1.2) brightness(0.85)",
             }}
           />
         </a>
@@ -301,164 +303,76 @@ function HeroSection() {
         }} />
       </div>
 
+      {/* Centered hero content */}
       <div style={{
-        maxWidth: "1200px",
-        margin: "0 auto",
-        width: "100%",
-        display: "grid",
-        gridTemplateColumns: "1fr 1fr",
-        alignItems: "stretch",
-        padding: "0 0 0 4rem",
-        gap: "0",
         position: "relative",
         zIndex: 1,
+        width: "100%",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        textAlign: "center",
+        padding: "0 2rem",
       }}
-      className="hero-grid"
+      className="hero-center"
       >
-        {/* Left: Text */}
-        <div className="hero-text-col" style={{
-          paddingTop: "4rem",
-          paddingBottom: "4rem",
-          paddingRight: "3rem",
+        {/* Name */}
+        <h1 className="hero-name" style={{
+          fontFamily: "'Gadugi', 'Trebuchet MS', serif",
+          fontSize: "clamp(3.5rem, 8vw, 7rem)",
+          color: "#3D5240",
+          fontWeight: 300,
+          lineHeight: 1.0,
+          letterSpacing: "-0.02em",
+          marginBottom: "0.15em",
+        }}>
+          Petra Vajs
+        </h1>
+
+        {/* Subtitle */}
+        <p style={{
+          fontFamily: "'Gadugi', 'Trebuchet MS', sans-serif",
+          fontSize: "clamp(0.85rem, 2vw, 1rem)",
+          letterSpacing: "0.22em",
+          textTransform: "uppercase",
+          color: "#9E8E7A",
+          marginBottom: "2.5rem",
+          marginTop: "1rem",
+        }}>
+          Psihoterapija in svetovanje
+        </p>
+
+        {/* Signature */}
+        <img
+          src="/manus-storage/petra-podpis_7d66b015.png"
+          alt="Petra Vajs — podpis"
+          style={{
+            height: "clamp(70px, 12vw, 110px)",
+            opacity: 0.8,
+            mixBlendMode: "multiply",
+          }}
+        />
+
+        {/* Scroll hint */}
+        <div style={{
+          position: "absolute",
+          bottom: "2.5rem",
+          left: "50%",
+          transform: "translateX(-50%)",
           display: "flex",
           flexDirection: "column",
-          justifyContent: "center",
+          alignItems: "center",
+          gap: "0.5rem",
+          opacity: 0.45,
         }}>
-          <p className="section-label hero-label" style={{ marginBottom: "2rem" }}>
-            Psihoterapija in svetovanje
-          </p>
-
-          <h1 className="hero-name" style={{
-            fontFamily: "'Gadugi', 'Trebuchet MS', serif",
-            fontSize: "clamp(3.2rem, 5.5vw, 5.5rem)",
-            color: "#3D5240",
-            fontWeight: 300,
-            lineHeight: 1.0,
-            marginBottom: "0",
-            letterSpacing: "-0.02em",
-          }}>
-            Petra
-          </h1>
-          <h1 className="hero-name" style={{
-            fontFamily: "'Gadugi', 'Trebuchet MS', serif",
-            fontSize: "clamp(3.2rem, 5.5vw, 5.5rem)",
-            color: "#3D5240",
-            fontWeight: 300,
-            lineHeight: 1.0,
-            marginBottom: "2.5rem",
-            letterSpacing: "-0.02em",
-          }}>
-            Vajs
-          </h1>
-
-          {/* Warm divider line */}
           <div style={{
-            width: "3rem",
-            height: "1.5px",
-            backgroundColor: "#C8B9A8",
-            marginBottom: "2rem",
-          }} className="hero-label" />
-
-          <p className="hero-subtitle" style={{
-            fontFamily: "'Gadugi', 'Trebuchet MS', sans-serif",
-            fontSize: "0.8rem",
-            letterSpacing: "0.18em",
-            textTransform: "uppercase",
-            color: "#9E8E7A",
-            marginBottom: "0.6rem",
-          }}>
-            Univ. dipl. soc. del.
-          </p>
-          <p className="hero-subtitle" style={{
-            fontFamily: "'Gadugi', 'Trebuchet MS', sans-serif",
-            fontSize: "1rem",
-            letterSpacing: "0.02em",
-            color: "#5A5A5A",
-            marginBottom: "3rem",
-            lineHeight: 1.6,
-            maxWidth: "340px",
-          }}>
-            Specializantka integrativne psihoterapije pod supervizijo
-          </p>
-
-          <div className="hero-btns" style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
-            <a href="#kontakt" className="btn-sage">
-              Naroči se
-            </a>
-            <a href="#o-meni" className="btn-sage-outline">
-              Več o meni
-            </a>
-          </div>
-        </div>
-
-        {/* Right: Full-height photo, no crop */}
-        <div style={{
-          position: "relative",
-          height: "calc(100vh - 70px)",
-          minHeight: "560px",
-          overflow: "hidden",
-        }}
-        className="hero-photo-wrap"
-        >
-          <img
-            src="/manus-storage/petra-foto1_8bb583df.jpg"
-            alt="Petra Vajs — psihoterapevtka"
-            style={{
-              width: "100%",
-              height: "100%",
-              objectFit: "cover",
-              objectPosition: "50% 15%",
-              display: "block",
-            }}
-          />
-          {/* Soft left-edge blend into background */}
-          <div style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            bottom: 0,
-            width: "120px",
-            background: "linear-gradient(to right, #FAF8F5 0%, transparent 100%)",
-            pointerEvents: "none",
-          }} />
-          {/* Soft bottom fade */}
-          <div style={{
-            position: "absolute",
-            bottom: 0,
-            left: 0,
-            right: 0,
-            height: "80px",
-            background: "linear-gradient(to top, #FAF8F5 0%, transparent 100%)",
-            pointerEvents: "none",
+            width: "1px",
+            height: "40px",
+            background: "linear-gradient(to bottom, transparent, #9E8E7A)",
           }} />
         </div>
       </div>
-
-      <style>{`
-        @media (max-width: 768px) {
-          .hero-grid {
-            grid-template-columns: 1fr !important;
-            padding: 0 !important;
-            gap: 0 !important;
-            min-height: auto !important;
-            align-items: start !important;
-          }
-          .hero-text-col {
-            padding: 3rem 1.5rem 2rem !important;
-            order: 1;
-          }
-          .hero-photo-wrap {
-            order: 2;
-            height: 100vw !important;
-            min-height: 340px !important;
-            max-height: 520px !important;
-            width: 100% !important;
-          }
-          .hero-photo-wrap img {
-            object-position: 50% 10% !important;
-          }
-        }
-      `}</style>
     </section>
   );
 }
@@ -666,24 +580,46 @@ function IntegrativnaSection() {
           margin: "0 auto",
           padding: "0 3rem",
           display: "grid",
-          gridTemplateColumns: "1fr 1fr",
+          gridTemplateColumns: "1fr 1.2fr",
           gap: "5rem",
-          alignItems: "start",
+          alignItems: "center",
         }}
         >
+        {/* Books photo */}
+        <div style={{
+          position: "relative",
+          borderRadius: "2px",
+          overflow: "hidden",
+          aspectRatio: "2/3",
+          width: "100%",
+        }}>
+          <img
+            src="/manus-storage/petra-foto-knjige_3aff599f.jpg"
+            alt="Petra Vajs — s knjigami"
+            style={{
+              position: "absolute",
+              inset: 0,
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              objectPosition: "center 10%",
+              display: "block",
+            }}
+          />
+        </div>
+
+        {/* Text */}
         <div>
           <p className="section-label">Pristop</p>
           <h2 className="section-title">
             Kaj je integrativna psihoterapija?
           </h2>
-        </div>
-        <div>
-          <p style={{ lineHeight: 1.9, color: "#3A3A3A" }}>
+          <p style={{ lineHeight: 1.9, color: "#3A3A3A", marginBottom: "1.25rem" }}>
             Integrativna psihoterapija je sodoben pristop, ki povezuje različne
             psihoterapevtske metode in smeri. Temelji na razumevanju človeka kot celote
             — misli, čustev, odnosov in telesa.
           </p>
-          <p style={{ lineHeight: 1.9, color: "#3A3A3A", marginTop: "1.25rem" }}>
+          <p style={{ lineHeight: 1.9, color: "#3A3A3A" }}>
             Integrativna psihoterapija se prilagaja posamezniku in njegovim potrebam.
             V ospredje se postavlja odnos med terapevtom in klientom, ki omogoča varno
             raziskovanje notranjega sveta, trenutnih izzivov in preteklih izkušenj.
@@ -696,7 +632,7 @@ function IntegrativnaSection() {
           .integrativna-inner-grid {
             grid-template-columns: 1fr !important;
             padding: 0 1.5rem !important;
-            gap: 2rem !important;
+            gap: 2.5rem !important;
           }
         }
       `}</style>
