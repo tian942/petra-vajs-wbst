@@ -1529,38 +1529,58 @@ function IntroOverlay({ onDone }: { onDone: () => void }) {
         overflow: "hidden",
       }}
     >
-      {/* Background photo */}
-      <img
-        src="/manus-storage/petra-foto1_8bb583df.jpg"
-        alt=""
-        aria-hidden="true"
-        style={{
-          position: "absolute",
-          inset: 0,
-          width: "100%",
-          height: "100%",
-          objectFit: "cover",
-          objectPosition: "center 15%",
-          animation: "introPhotoIn 1.6s cubic-bezier(0.22,1,0.36,1) 0s both",
-        }}
-      />
-      {/* Warm overlay to soften photo and ensure text readability */}
+      {/* Background photo — right half */}
       <div style={{
         position: "absolute",
         inset: 0,
-        background: "linear-gradient(135deg, rgba(250,248,245,0.72) 0%, rgba(232,221,212,0.55) 50%, rgba(250,248,245,0.65) 100%)",
-      }} />
+        display: "flex",
+      }}>
+        {/* Left: warm gradient fade */}
+        <div style={{
+          flex: "0 0 50%",
+          background: "linear-gradient(to right, #FAF8F5 60%, rgba(250,248,245,0) 100%)",
+          zIndex: 1,
+        }} />
+        {/* Right: photo */}
+        <div style={{
+          flex: "0 0 55%",
+          marginLeft: "-5%",
+          position: "relative",
+          overflow: "hidden",
+        }}>
+          <img
+            src="/manus-storage/petra-foto1_8bb583df.jpg"
+            alt=""
+            aria-hidden="true"
+            style={{
+              position: "absolute",
+              inset: 0,
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              objectPosition: "30% 15%",
+              animation: "introPhotoIn 1.4s cubic-bezier(0.22,1,0.36,1) 0.1s both",
+            }}
+          />
+        </div>
+      </div>
 
-      {/* Content — centered on top */}
+      {/* Content — left aligned */}
       <div style={{
         position: "relative",
         zIndex: 2,
         display: "flex",
         flexDirection: "column",
-        alignItems: "center",
-        textAlign: "center",
-        padding: "0 2rem",
-      }}>
+        alignItems: "flex-start",
+        textAlign: "left",
+        padding: "0 4rem",
+        width: "100%",
+        maxWidth: "520px",
+        marginLeft: "0",
+        alignSelf: "center",
+      }}
+      className="intro-content"
+      >
         {/* Name */}
         <h1 style={{
           fontFamily: "'Gadugi', 'Trebuchet MS', serif",
@@ -1610,6 +1630,14 @@ function IntroOverlay({ onDone }: { onDone: () => void }) {
         @keyframes introPhotoIn {
           from { opacity: 0; transform: scale(1.06); }
           to   { opacity: 1; transform: scale(1); }
+        }
+        @media (max-width: 768px) {
+          .intro-content {
+            padding: 0 2rem !important;
+            max-width: 100% !important;
+            align-items: center !important;
+            text-align: center !important;
+          }
         }
       `}</style>
     </div>
