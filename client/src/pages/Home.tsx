@@ -31,7 +31,7 @@ function Navigation() {
   }, []);
 
   const links = [
-    { label: "Domov", href: "#domov" },
+    { label: "Domov", href: "#poslanstvo" },
     { label: "O meni", href: "#o-meni" },
     { label: "Psihoterapija", href: "#psihoterapija" },
     { label: "Kako poteka", href: "#kako-poteka" },
@@ -381,10 +381,11 @@ function PoslanstvoSection() {
 
   return (
     <section
-      id="psihoterapija"
+      id="poslanstvo"
       style={{
         backgroundColor: "#EDE4D9",
-        padding: "7rem 0",
+        paddingTop: "calc(80px + 5rem)",
+        paddingBottom: "7rem",
       }}
     >
       <div
@@ -1665,7 +1666,6 @@ export default function Home() {
         }}
       >
         <Navigation />
-        <HeroSection />
         <PoslanstvoSection />
         <KomuSection />
         <IntegrativnaSection />
