@@ -72,13 +72,12 @@ function Navigation() {
           }}
         >
           <img
-            src="/manus-storage/petra-podpis_7d66b015.png"
+            src="/manus-storage/petra-podpis-transparent_16a81491.png"
             alt="Petra Vajs"
             style={{
               height: "72px",
-              mixBlendMode: "multiply",
               display: "block",
-              filter: "contrast(1.3) brightness(0.8) saturate(0)",
+              filter: "brightness(0.1)",
             }}
           />
         </a>
@@ -1525,72 +1524,92 @@ function IntroOverlay({ onDone }: { onDone: () => void }) {
         alignItems: "center",
         justifyContent: "center",
         opacity: phase === "out" ? 0 : 1,
-        transition: phase === "out" ? "opacity 0.9s cubic-bezier(0.4,0,0.2,1)" : "none",
+        transition: phase === "out" ? "opacity 1.1s cubic-bezier(0.4,0,0.2,1)" : "none",
         pointerEvents: phase === "out" ? "none" : "all",
+        overflow: "hidden",
       }}
     >
-      {/* Soft background blobs */}
-      <div style={{ position: "absolute", inset: 0, overflow: "hidden", pointerEvents: "none" }}>
-        <div style={{
-          position: "absolute", top: "-15%", left: "-10%",
-          width: "60vw", height: "60vw", maxWidth: "700px", maxHeight: "700px",
-          borderRadius: "60% 40% 55% 45% / 50% 60% 40% 50%",
-          background: "radial-gradient(ellipse at center, rgba(232,221,212,0.5) 0%, rgba(250,248,245,0) 70%)",
-          filter: "blur(50px)",
-        }} />
-        <div style={{
-          position: "absolute", bottom: "-10%", right: "-8%",
-          width: "45vw", height: "45vw", maxWidth: "500px", maxHeight: "500px",
-          borderRadius: "45% 55% 40% 60% / 55% 45% 60% 40%",
-          background: "radial-gradient(ellipse at center, rgba(200,185,168,0.35) 0%, rgba(250,248,245,0) 70%)",
-          filter: "blur(60px)",
-        }} />
-      </div>
-
-      {/* Name */}
-      <h1 style={{
-        fontFamily: "'Gadugi', 'Trebuchet MS', serif",
-        fontSize: "clamp(3rem, 8vw, 6.5rem)",
-        color: "#3D5240",
-        fontWeight: 300,
-        letterSpacing: "-0.02em",
-        lineHeight: 1,
-        margin: 0,
-        animation: "introFadeUp 0.9s cubic-bezier(0.22,1,0.36,1) 0.2s both",
-      }}>
-        Petra Vajs
-      </h1>
-
-      {/* Subtitle */}
-      <p style={{
-        fontFamily: "'Gadugi', 'Trebuchet MS', sans-serif",
-        fontSize: "clamp(0.75rem, 1.8vw, 0.9rem)",
-        letterSpacing: "0.28em",
-        textTransform: "uppercase",
-        color: "#9E8E7A",
-        marginTop: "1rem",
-        marginBottom: "2.5rem",
-        animation: "introFadeUp 0.9s cubic-bezier(0.22,1,0.36,1) 0.55s both",
-      }}>
-        Psihoterapija in svetovanje
-      </p>
-
-      {/* Signature — no background, multiply blend */}
+      {/* Background photo */}
       <img
-        src="/manus-storage/petra-podpis_7d66b015.png"
-        alt="Petra Vajs — podpis"
+        src="/manus-storage/petra-foto1_8bb583df.jpg"
+        alt=""
+        aria-hidden="true"
         style={{
-          height: "clamp(60px, 10vw, 95px)",
-          mixBlendMode: "multiply",
-          opacity: 0,
-          animation: "introFadeUp 0.9s cubic-bezier(0.22,1,0.36,1) 0.9s both",
+          position: "absolute",
+          inset: 0,
+          width: "100%",
+          height: "100%",
+          objectFit: "cover",
+          objectPosition: "center 15%",
+          animation: "introPhotoIn 1.6s cubic-bezier(0.22,1,0.36,1) 0s both",
         }}
       />
+      {/* Warm overlay to soften photo and ensure text readability */}
+      <div style={{
+        position: "absolute",
+        inset: 0,
+        background: "linear-gradient(135deg, rgba(250,248,245,0.72) 0%, rgba(232,221,212,0.55) 50%, rgba(250,248,245,0.65) 100%)",
+      }} />
+
+      {/* Content — centered on top */}
+      <div style={{
+        position: "relative",
+        zIndex: 2,
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        textAlign: "center",
+        padding: "0 2rem",
+      }}>
+        {/* Name */}
+        <h1 style={{
+          fontFamily: "'Gadugi', 'Trebuchet MS', serif",
+          fontSize: "clamp(3.2rem, 9vw, 7.5rem)",
+          color: "#3D5240",
+          fontWeight: 300,
+          letterSpacing: "-0.02em",
+          lineHeight: 1,
+          margin: 0,
+          animation: "introFadeUp 0.9s cubic-bezier(0.22,1,0.36,1) 0.3s both",
+        }}>
+          Petra Vajs
+        </h1>
+
+        {/* Subtitle */}
+        <p style={{
+          fontFamily: "'Gadugi', 'Trebuchet MS', sans-serif",
+          fontSize: "clamp(0.7rem, 1.8vw, 0.88rem)",
+          letterSpacing: "0.3em",
+          textTransform: "uppercase",
+          color: "#6B7B6B",
+          marginTop: "1.1rem",
+          marginBottom: "2.8rem",
+          animation: "introFadeUp 0.9s cubic-bezier(0.22,1,0.36,1) 0.65s both",
+        }}>
+          Psihoterapija in svetovanje
+        </p>
+
+        {/* Signature — transparent PNG, very large */}
+        <img
+          src="/manus-storage/petra-podpis-transparent_16a81491.png"
+          alt="Petra Vajs — podpis"
+          style={{
+            height: "clamp(100px, 18vw, 180px)",
+            opacity: 0,
+            animation: "introFadeUp 1s cubic-bezier(0.22,1,0.36,1) 1.0s both",
+            filter: "brightness(0.15)",
+          }}
+        />
+      </div>
 
       <style>{`
         @keyframes introFadeUp {
-          from { opacity: 0; transform: translateY(18px); }
+          from { opacity: 0; transform: translateY(20px); }
           to   { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes introPhotoIn {
+          from { opacity: 0; transform: scale(1.06); }
+          to   { opacity: 1; transform: scale(1); }
         }
       `}</style>
     </div>
