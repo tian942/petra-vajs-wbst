@@ -76,11 +76,9 @@ function Navigation() {
             alt="Petra Vajs"
             style={{
               height: "72px",
-              opacity: 1,
               mixBlendMode: "multiply",
-              background: "transparent",
-              imageRendering: "crisp-edges",
-              filter: "contrast(1.2) brightness(0.85)",
+              display: "block",
+              filter: "contrast(1.3) brightness(0.8) saturate(0)",
             }}
           />
         </a>
@@ -1498,22 +1496,139 @@ function Footer() {
   );
 }
 
+// ─── Intro Overlay ───────────────────────────────────────────────────────────
+
+function IntroOverlay({ onDone }: { onDone: () => void }) {
+  const [phase, setPhase] = useState<"in" | "hold" | "out">("in");
+
+  useEffect(() => {
+    // Phase 1: elements fade in (handled by CSS animations)
+    // After 2.8s start fade-out
+    const holdTimer = setTimeout(() => setPhase("out"), 2800);
+    // After fade-out completes (0.9s), call onDone
+    const doneTimer = setTimeout(() => onDone(), 3700);
+    return () => {
+      clearTimeout(holdTimer);
+      clearTimeout(doneTimer);
+    };
+  }, [onDone]);
+
+  return (
+    <div
+      style={{
+        position: "fixed",
+        inset: 0,
+        zIndex: 9999,
+        backgroundColor: "#FAF8F5",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        opacity: phase === "out" ? 0 : 1,
+        transition: phase === "out" ? "opacity 0.9s cubic-bezier(0.4,0,0.2,1)" : "none",
+        pointerEvents: phase === "out" ? "none" : "all",
+      }}
+    >
+      {/* Soft background blobs */}
+      <div style={{ position: "absolute", inset: 0, overflow: "hidden", pointerEvents: "none" }}>
+        <div style={{
+          position: "absolute", top: "-15%", left: "-10%",
+          width: "60vw", height: "60vw", maxWidth: "700px", maxHeight: "700px",
+          borderRadius: "60% 40% 55% 45% / 50% 60% 40% 50%",
+          background: "radial-gradient(ellipse at center, rgba(232,221,212,0.5) 0%, rgba(250,248,245,0) 70%)",
+          filter: "blur(50px)",
+        }} />
+        <div style={{
+          position: "absolute", bottom: "-10%", right: "-8%",
+          width: "45vw", height: "45vw", maxWidth: "500px", maxHeight: "500px",
+          borderRadius: "45% 55% 40% 60% / 55% 45% 60% 40%",
+          background: "radial-gradient(ellipse at center, rgba(200,185,168,0.35) 0%, rgba(250,248,245,0) 70%)",
+          filter: "blur(60px)",
+        }} />
+      </div>
+
+      {/* Name */}
+      <h1 style={{
+        fontFamily: "'Gadugi', 'Trebuchet MS', serif",
+        fontSize: "clamp(3rem, 8vw, 6.5rem)",
+        color: "#3D5240",
+        fontWeight: 300,
+        letterSpacing: "-0.02em",
+        lineHeight: 1,
+        margin: 0,
+        animation: "introFadeUp 0.9s cubic-bezier(0.22,1,0.36,1) 0.2s both",
+      }}>
+        Petra Vajs
+      </h1>
+
+      {/* Subtitle */}
+      <p style={{
+        fontFamily: "'Gadugi', 'Trebuchet MS', sans-serif",
+        fontSize: "clamp(0.75rem, 1.8vw, 0.9rem)",
+        letterSpacing: "0.28em",
+        textTransform: "uppercase",
+        color: "#9E8E7A",
+        marginTop: "1rem",
+        marginBottom: "2.5rem",
+        animation: "introFadeUp 0.9s cubic-bezier(0.22,1,0.36,1) 0.55s both",
+      }}>
+        Psihoterapija in svetovanje
+      </p>
+
+      {/* Signature — no background, multiply blend */}
+      <img
+        src="/manus-storage/petra-podpis_7d66b015.png"
+        alt="Petra Vajs — podpis"
+        style={{
+          height: "clamp(60px, 10vw, 95px)",
+          mixBlendMode: "multiply",
+          opacity: 0,
+          animation: "introFadeUp 0.9s cubic-bezier(0.22,1,0.36,1) 0.9s both",
+        }}
+      />
+
+      <style>{`
+        @keyframes introFadeUp {
+          from { opacity: 0; transform: translateY(18px); }
+          to   { opacity: 1; transform: translateY(0); }
+        }
+      `}</style>
+    </div>
+  );
+}
+
 // ─── Main Page ────────────────────────────────────────────────────────────────
 
 export default function Home() {
+  const [showIntro, setShowIntro] = useState(true);
+  const [siteVisible, setSiteVisible] = useState(false);
+
+  const handleIntroDone = () => {
+    setShowIntro(false);
+    setSiteVisible(true);
+  };
+
   return (
     <div style={{ fontFamily: "'Gadugi', 'Trebuchet MS', sans-serif" }}>
-      <Navigation />
-      <HeroSection />
-      <PoslanstvoSection />
-      <KomuSection />
-      <IntegrativnaSection />
-      <MojaPotSection />
-      <KakoPotekaSection />
-      <CenikSection />
-      <FAQSection />
-      <KontaktSection />
-      <Footer />
+      {showIntro && <IntroOverlay onDone={handleIntroDone} />}
+      <div
+        style={{
+          opacity: siteVisible ? 1 : 0,
+          transition: "opacity 0.8s cubic-bezier(0.4,0,0.2,1) 0.1s",
+        }}
+      >
+        <Navigation />
+        <HeroSection />
+        <PoslanstvoSection />
+        <KomuSection />
+        <IntegrativnaSection />
+        <MojaPotSection />
+        <KakoPotekaSection />
+        <CenikSection />
+        <FAQSection />
+        <KontaktSection />
+        <Footer />
+      </div>
     </div>
   );
 }
