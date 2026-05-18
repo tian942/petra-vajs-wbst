@@ -1530,17 +1530,18 @@ function IntroOverlay({ onDone }: { onDone: () => void }) {
         overflow: "hidden",
       }}
     >
-      {/* Background photo — right half */}
-      <div style={{
+      {/* === DESKTOP: photo right half, text left === */}
+      <div className="intro-desktop-layout" style={{
         position: "absolute",
         inset: 0,
         display: "flex",
       }}>
-        {/* Left: warm gradient fade */}
+        {/* Left gradient overlay */}
         <div style={{
           flex: "0 0 50%",
-          background: "linear-gradient(to right, #FAF8F5 60%, rgba(250,248,245,0) 100%)",
+          background: "linear-gradient(to right, #FAF8F5 55%, rgba(250,248,245,0) 100%)",
           zIndex: 1,
+          pointerEvents: "none",
         }} />
         {/* Right: photo */}
         <div style={{
@@ -1559,28 +1560,61 @@ function IntroOverlay({ onDone }: { onDone: () => void }) {
               width: "100%",
               height: "100%",
               objectFit: "cover",
-              objectPosition: "30% 15%",
+              objectPosition: "40% 10%",
               animation: "introPhotoIn 1.4s cubic-bezier(0.22,1,0.36,1) 0.1s both",
             }}
           />
         </div>
       </div>
 
-      {/* Content — left aligned */}
-      <div style={{
-        position: "relative",
-        zIndex: 2,
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "flex-start",
-        textAlign: "left",
-        padding: "0 4rem",
-        width: "100%",
-        maxWidth: "520px",
-        marginLeft: "0",
-        alignSelf: "center",
-      }}
-      className="intro-content"
+      {/* === MOBILE: photo top half, text bottom === */}
+      <div className="intro-mobile-layout" style={{ display: "none", position: "absolute", inset: 0, flexDirection: "column" }}>
+        {/* Top: photo */}
+        <div style={{ flex: "0 0 55%", position: "relative", overflow: "hidden" }}>
+          <img
+            src="/manus-storage/petra-foto1_8bb583df.jpg"
+            alt=""
+            aria-hidden="true"
+            style={{
+              position: "absolute",
+              inset: 0,
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              objectPosition: "center 8%",
+              animation: "introPhotoIn 1.4s cubic-bezier(0.22,1,0.36,1) 0.1s both",
+            }}
+          />
+          {/* Bottom fade on photo */}
+          <div style={{
+            position: "absolute",
+            bottom: 0,
+            left: 0,
+            right: 0,
+            height: "35%",
+            background: "linear-gradient(to bottom, rgba(250,248,245,0) 0%, #FAF8F5 100%)",
+            pointerEvents: "none",
+          }} />
+        </div>
+        {/* Bottom: warm bg for text */}
+        <div style={{ flex: "1", backgroundColor: "#FAF8F5" }} />
+      </div>
+
+      {/* Content — desktop: left aligned; mobile: centered bottom */}
+      <div
+        className="intro-content"
+        style={{
+          position: "relative",
+          zIndex: 2,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "flex-start",
+          textAlign: "left",
+          padding: "0 4rem",
+          width: "100%",
+          maxWidth: "520px",
+          alignSelf: "center",
+        }}
       >
         {/* Name */}
         <h1 style={{
@@ -1604,18 +1638,18 @@ function IntroOverlay({ onDone }: { onDone: () => void }) {
           textTransform: "uppercase",
           color: "#6B7B6B",
           marginTop: "1.1rem",
-          marginBottom: "2.8rem",
+          marginBottom: "2.5rem",
           animation: "introFadeUp 0.9s cubic-bezier(0.22,1,0.36,1) 0.65s both",
         }}>
           Psihoterapija in svetovanje
         </p>
 
-        {/* Signature — transparent PNG, very large */}
+        {/* Signature */}
         <img
           src="/manus-storage/petra-podpis-transparent_16a81491.png"
           alt="Petra Vajs — podpis"
           style={{
-            height: "clamp(100px, 18vw, 180px)",
+            height: "clamp(90px, 18vw, 180px)",
             opacity: 0,
             animation: "introFadeUp 1s cubic-bezier(0.22,1,0.36,1) 1.0s both",
             filter: "brightness(0.15)",
@@ -1632,12 +1666,24 @@ function IntroOverlay({ onDone }: { onDone: () => void }) {
           from { opacity: 0; transform: scale(1.06); }
           to   { opacity: 1; transform: scale(1); }
         }
+        /* Desktop: show desktop layout, hide mobile */
+        .intro-desktop-layout { display: flex !important; }
+        .intro-mobile-layout  { display: none !important; }
+        /* Mobile: flip */
         @media (max-width: 768px) {
+          .intro-desktop-layout { display: none !important; }
+          .intro-mobile-layout  { display: flex !important; }
           .intro-content {
-            padding: 0 2rem !important;
+            position: absolute !important;
+            bottom: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            align-self: auto !important;
             max-width: 100% !important;
+            padding: 2rem 2rem 3rem !important;
             align-items: center !important;
             text-align: center !important;
+            background: transparent !important;
           }
         }
       `}</style>
