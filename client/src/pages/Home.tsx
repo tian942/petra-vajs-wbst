@@ -60,7 +60,7 @@ function Navigation() {
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
-        height: "90px",
+        height: "100px",
       }}>
         {/* Logo — Name + Subtitle + Signature */}
         <a
@@ -74,33 +74,37 @@ function Navigation() {
             lineHeight: 1,
           }}
         >
+          {/* Petra */}
           <span style={{
             fontFamily: "'Gadugi', 'Trebuchet MS', serif",
-            fontSize: "1.15rem",
+            fontSize: "0.95rem",
             fontWeight: 400,
-            letterSpacing: "0.12em",
-            textTransform: "uppercase",
-            color: "#3D5240",
-            lineHeight: 1.2,
-          }}>Petra Vajs</span>
-          <span style={{
-            fontFamily: "'Gadugi', 'Trebuchet MS', sans-serif",
-            fontSize: "0.62rem",
             letterSpacing: "0.18em",
             textTransform: "uppercase",
-            color: "#9E8E7A",
-            lineHeight: 1.3,
-            marginBottom: "4px",
-          }}>Psihoterapija in svetovanje</span>
+            color: "#3D5240",
+            lineHeight: 1.1,
+          }}>Petra</span>
+          {/* Signature — bigger */}
           <img
             src="/manus-storage/petra-podpis-transparent_16a81491.png"
             alt="Petra Vajs — podpis"
             style={{
-              height: "38px",
+              height: "52px",
               display: "block",
               filter: "brightness(0.1)",
+              margin: "2px 0",
             }}
           />
+          {/* Vajs */}
+          <span style={{
+            fontFamily: "'Gadugi', 'Trebuchet MS', serif",
+            fontSize: "0.95rem",
+            fontWeight: 400,
+            letterSpacing: "0.18em",
+            textTransform: "uppercase",
+            color: "#3D5240",
+            lineHeight: 1.1,
+          }}>Vajs</span>
         </a>
 
         {/* Desktop nav links */}
