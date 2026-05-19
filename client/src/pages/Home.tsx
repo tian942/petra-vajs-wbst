@@ -74,37 +74,36 @@ function Navigation() {
             lineHeight: 1,
           }}
         >
-          {/* Petra */}
+          {/* PETRA VAJS */}
           <span style={{
             fontFamily: "'Gadugi', 'Trebuchet MS', serif",
-            fontSize: "0.95rem",
+            fontSize: "1.1rem",
             fontWeight: 400,
-            letterSpacing: "0.18em",
+            letterSpacing: "0.2em",
             textTransform: "uppercase",
             color: "#3D5240",
-            lineHeight: 1.1,
-          }}>Petra</span>
-          {/* Signature — bigger */}
+            lineHeight: 1.2,
+          }}>Petra Vajs</span>
+          {/* Subtitle */}
+          <span style={{
+            fontFamily: "'Gadugi', 'Trebuchet MS', sans-serif",
+            fontSize: "0.58rem",
+            letterSpacing: "0.2em",
+            textTransform: "uppercase",
+            color: "#9E8E7A",
+            lineHeight: 1.3,
+            marginBottom: "2px",
+          }}>Psihot. in svetovanje</span>
+          {/* Signature */}
           <img
             src="/manus-storage/petra-podpis-transparent_16a81491.png"
             alt="Petra Vajs — podpis"
             style={{
-              height: "52px",
+              height: "46px",
               display: "block",
               filter: "brightness(0.1)",
-              margin: "2px 0",
             }}
           />
-          {/* Vajs */}
-          <span style={{
-            fontFamily: "'Gadugi', 'Trebuchet MS', serif",
-            fontSize: "0.95rem",
-            fontWeight: 400,
-            letterSpacing: "0.18em",
-            textTransform: "uppercase",
-            color: "#3D5240",
-            lineHeight: 1.1,
-          }}>Vajs</span>
         </a>
 
         {/* Desktop nav links */}
