@@ -62,46 +62,51 @@ function Navigation() {
         justifyContent: "space-between",
         height: "100px",
       }}>
-        {/* Logo — Name + Subtitle + Signature */}
+        {/* Logo — Saša Zor style: centered triangle */}
         <a
           href="#poslanstvo"
           style={{
             textDecoration: "none",
             display: "flex",
             flexDirection: "column",
-            alignItems: "flex-start",
+            alignItems: "center",
             gap: "0",
             lineHeight: 1,
           }}
         >
-          {/* PETRA VAJS */}
+          {/* PETRA VAJS — top, narrow */}
           <span style={{
-            fontFamily: "'Gadugi', 'Trebuchet MS', serif",
-            fontSize: "1.1rem",
+            fontFamily: "'Gadugi', 'Trebuchet MS', sans-serif",
+            fontSize: "1.05rem",
             fontWeight: 400,
-            letterSpacing: "0.2em",
+            letterSpacing: "0.28em",
             textTransform: "uppercase",
             color: "#3D5240",
             lineHeight: 1.2,
+            display: "block",
+            textAlign: "center",
           }}>Petra Vajs</span>
-          {/* Subtitle */}
+          {/* Subtitle — middle, slightly wider */}
           <span style={{
             fontFamily: "'Gadugi', 'Trebuchet MS', sans-serif",
-            fontSize: "0.58rem",
-            letterSpacing: "0.2em",
+            fontSize: "0.56rem",
+            letterSpacing: "0.22em",
             textTransform: "uppercase",
             color: "#9E8E7A",
-            lineHeight: 1.3,
-            marginBottom: "2px",
-          }}>Psihot. in svetovanje</span>
-          {/* Signature */}
+            lineHeight: 1.4,
+            marginBottom: "1px",
+            display: "block",
+            textAlign: "center",
+          }}>Psihoterapija in svetovanje</span>
+          {/* Signature — bottom, widest, centered */}
           <img
             src="/manus-storage/petra-podpis-transparent_16a81491.png"
             alt="Petra Vajs — podpis"
             style={{
-              height: "46px",
+              height: "58px",
               display: "block",
               filter: "brightness(0.1)",
+              marginTop: "1px",
             }}
           />
         </a>
