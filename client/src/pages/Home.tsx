@@ -33,7 +33,7 @@ function Navigation() {
   const links = [
     { label: "Domov", href: "#poslanstvo" },
     { label: "O meni", href: "#o-meni" },
-    { label: "Psihoterapija", href: "#psihoterapija" },
+    { label: "Psihoterapija", href: "#komu" },
     { label: "Kako poteka", href: "#kako-poteka" },
     { label: "Cenik", href: "#cenik" },
     { label: "Kontakt", href: "#kontakt" },
@@ -60,22 +60,43 @@ function Navigation() {
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
-        height: "80px",
+        height: "90px",
       }}>
-        {/* Logo / Signature */}
+        {/* Logo — Name + Subtitle + Signature */}
         <a
-          href="#domov"
+          href="#poslanstvo"
           style={{
             textDecoration: "none",
             display: "flex",
-            alignItems: "center",
+            flexDirection: "column",
+            alignItems: "flex-start",
+            gap: "0",
+            lineHeight: 1,
           }}
         >
+          <span style={{
+            fontFamily: "'Gadugi', 'Trebuchet MS', serif",
+            fontSize: "1.15rem",
+            fontWeight: 400,
+            letterSpacing: "0.12em",
+            textTransform: "uppercase",
+            color: "#3D5240",
+            lineHeight: 1.2,
+          }}>Petra Vajs</span>
+          <span style={{
+            fontFamily: "'Gadugi', 'Trebuchet MS', sans-serif",
+            fontSize: "0.62rem",
+            letterSpacing: "0.18em",
+            textTransform: "uppercase",
+            color: "#9E8E7A",
+            lineHeight: 1.3,
+            marginBottom: "4px",
+          }}>Psihoterapija in svetovanje</span>
           <img
             src="/manus-storage/petra-podpis-transparent_16a81491.png"
-            alt="Petra Vajs"
+            alt="Petra Vajs — podpis"
             style={{
-              height: "72px",
+              height: "38px",
               display: "block",
               filter: "brightness(0.1)",
             }}
@@ -494,6 +515,7 @@ function KomuSection() {
 
   return (
     <section
+      id="komu"
       style={{
         backgroundColor: "#FAF8F5",
         padding: "7rem 0",
@@ -700,6 +722,14 @@ function MojaPotSection() {
 
           {/* Text column */}
           <div>
+            {/* Naziv */}
+            <div style={{ marginBottom: "2rem", paddingBottom: "1.5rem", borderBottom: "1px solid #E0D4C8" }}>
+              <p style={{ fontFamily: "'Gadugi', 'Trebuchet MS', serif", fontSize: "1.4rem", fontWeight: 400, color: "#3D5240", marginBottom: "0.3rem" }}>Petra Vajs</p>
+              <p style={{ fontFamily: "'Gadugi', 'Trebuchet MS', sans-serif", fontSize: "0.82rem", color: "#7A7A7A", letterSpacing: "0.05em", lineHeight: 1.7, margin: 0 }}>
+                Univ. dipl. spc. del.<br />
+                Specializantka integrativne psihoterapije pod supervizijo
+              </p>
+            </div>
             <p style={{ lineHeight: 1.9, color: "#3A3A3A", marginBottom: "1.5rem" }}>
               Že zelo zgodaj sem v sebi začutila ljubezen do dela z ljudmi — biti ob njih
               v trenutkih, ko potrebujejo razumevanje, podporo in prostor, kjer so lahko
@@ -1199,17 +1229,23 @@ function KontaktSection() {
   const [submitted, setSubmitted] = useState(false);
   const [sending, setSending] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.strinjanje) {
       alert("Prosim, strinjajte se z obdelavo osebnih podatkov.");
       return;
     }
-    setSending(true);
-    // Simulate sending
-    await new Promise((r) => setTimeout(r, 1200));
-    setSending(false);
-    setSubmitted(true);
+    // Open mailto with both recipients
+    const subject = encodeURIComponent(`Novo sporočilo od ${formData.ime} — Petra Vajs Psihoterapija`);
+    const body = encodeURIComponent(
+      `Ime in priimek: ${formData.ime}\n` +
+      `E-naslov: ${formData.email}\n` +
+      `Namen: ${formData.namen}\n\n` +
+      `Sporočilo:\n${formData.sporocilo}`
+    );
+    window.location.href = `mailto:ambulanta@sigmund-freud.si,petravajs@gmail.com?subject=${subject}&body=${body}`;
+    // Show confirmation after short delay
+    setTimeout(() => setSubmitted(true), 500);
   };
 
   const inputStyle = {
