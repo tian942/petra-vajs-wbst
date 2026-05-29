@@ -1250,7 +1250,9 @@ function KontaktSection() {
       `Namen: ${formData.namen}\n\n` +
       `Sporočilo:\n${formData.sporocilo}`
     );
-    window.location.href = `mailto:ambulanta@sigmund-freud.si,petravajs@gmail.com?subject=${subject}&body=${body}`;
+    // mailto: To = ambulanta, CC = petravajs, Reply-To = sender's email
+    const replyTo = encodeURIComponent(formData.email);
+    window.location.href = `mailto:ambulanta@sigmund-freud.si?cc=petravajs%40gmail.com&reply-to=${replyTo}&subject=${subject}&body=${body}`;
     // Show confirmation after short delay
     setTimeout(() => setSubmitted(true), 500);
   };
@@ -1643,20 +1645,22 @@ function IntroOverlay({ onDone }: { onDone: () => void }) {
         <div style={{ flex: "1", backgroundColor: "#FAF8F5" }} />
       </div>
 
-      {/* Content — desktop: left aligned; mobile: centered bottom */}
+      {/* Content — centered on screen */}
       <div
         className="intro-content"
         style={{
-          position: "relative",
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
           zIndex: 2,
           display: "flex",
           flexDirection: "column",
-          alignItems: "flex-start",
-          textAlign: "left",
-          padding: "0 4rem",
-          width: "100%",
-          maxWidth: "520px",
-          alignSelf: "center",
+          alignItems: "center",
+          justifyContent: "center",
+          textAlign: "center",
+          padding: "2rem",
         }}
       >
         {/* Name */}
