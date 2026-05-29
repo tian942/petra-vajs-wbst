@@ -1316,7 +1316,7 @@ function KontaktSection() {
           <h2 className="section-title">Kontakt</h2>
 
           <p style={{ lineHeight: 1.9, color: "#3A3A3A", marginBottom: "2.5rem" }}>
-            Veselim se srečanja z vami. Pišite mi ali pokličite — skupaj bova
+            Veselim se srečanja z vami. Pišite mi ali pokličite — skupaj bomo
             poiskali pravi termin za vas.
           </p>
 
