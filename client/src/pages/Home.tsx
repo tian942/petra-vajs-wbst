@@ -17,6 +17,7 @@
  */
 
 import { useState, useEffect, useRef } from "react";
+import { trpc } from "@/lib/trpc";
 
 // ─── Navigation ──────────────────────────────────────────────────────────────
 
@@ -1234,7 +1235,20 @@ function KontaktSection() {
     strinjanje: false,
   });
   const [submitted, setSubmitted] = useState(false);
-  const [sending, setSending] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
+
+  const sendEmailMutation = trpc.contact.sendEmail.useMutation({
+    onSuccess: () => {
+      setSubmitted(true);
+      setErrorMsg("");
+    },
+    onError: (err) => {
+      setErrorMsg("Napaka pri pošiljanju. Prosim, pišite nam neposredno na ambulanta@sigmund-freud.si.");
+      console.error("[Email error]", err);
+    },
+  });
+
+  const sending = sendEmailMutation.isPending;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -1242,19 +1256,13 @@ function KontaktSection() {
       alert("Prosim, strinjajte se z obdelavo osebnih podatkov.");
       return;
     }
-    // Open mailto with both recipients
-    const subject = encodeURIComponent(`Novo sporočilo od ${formData.ime} — Petra Vajs Psihoterapija`);
-    const body = encodeURIComponent(
-      `Ime in priimek: ${formData.ime}\n` +
-      `E-naslov: ${formData.email}\n` +
-      `Namen: ${formData.namen}\n\n` +
-      `Sporočilo:\n${formData.sporocilo}`
-    );
-    // mailto: To = ambulanta, CC = petravajs, Reply-To = sender's email
-    const replyTo = encodeURIComponent(formData.email);
-    window.location.href = `mailto:ambulanta@sigmund-freud.si?cc=petravajs%40gmail.com&reply-to=${replyTo}&subject=${subject}&body=${body}`;
-    // Show confirmation after short delay
-    setTimeout(() => setSubmitted(true), 500);
+    setErrorMsg("");
+    sendEmailMutation.mutate({
+      ime: formData.ime,
+      email: formData.email,
+      namen: formData.namen || undefined,
+      sporocilo: formData.sporocilo,
+    });
   };
 
   const inputStyle = {
@@ -1465,6 +1473,11 @@ function KontaktSection() {
               >
                 {sending ? "Pošiljam..." : "Pošlji"}
               </button>
+              {errorMsg && (
+                <p style={{ color: "#c0392b", fontSize: "0.85rem", lineHeight: 1.6, marginTop: "0.5rem" }}>
+                  {errorMsg}
+                </p>
+              )}
             </form>
           )}
         </div>
@@ -1645,22 +1658,20 @@ function IntroOverlay({ onDone }: { onDone: () => void }) {
         <div style={{ flex: "1", backgroundColor: "#FAF8F5" }} />
       </div>
 
-      {/* Content — centered on screen */}
+      {/* Content — desktop: left aligned; mobile: centered bottom */}
       <div
         className="intro-content"
         style={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
+          position: "relative",
           zIndex: 2,
           display: "flex",
           flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          textAlign: "center",
-          padding: "2rem",
+          alignItems: "flex-start",
+          textAlign: "left",
+          padding: "0 4rem",
+          width: "100%",
+          maxWidth: "520px",
+          alignSelf: "center",
         }}
       >
         {/* Name */}
