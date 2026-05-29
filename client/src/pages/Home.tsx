@@ -100,12 +100,11 @@ function Navigation() {
           }}>Psihoterapija in svetovanje</span>
           {/* Signature — bottom, widest, centered */}
           <img
-            src="/manus-storage/petra-podpis-transparent_16a81491.png"
+            src="/manus-storage/petra-podpis-clean_7d23772d.png"
             alt="Petra Vajs — podpis"
             style={{
               height: "58px",
               display: "block",
-              filter: "brightness(0.1)",
               marginTop: "1px",
             }}
           />
@@ -371,7 +370,7 @@ function HeroSection() {
 
         {/* Signature */}
         <img
-          src="/manus-storage/petra-podpis_7d66b015.png"
+          src="/manus-storage/petra-podpis-clean_7d23772d.png"
           alt="Petra Vajs — podpis"
           style={{
             height: "clamp(70px, 12vw, 110px)",
@@ -1690,14 +1689,13 @@ function IntroOverlay({ onDone }: { onDone: () => void }) {
 
         {/* Signature */}
         <img
-          src="/manus-storage/petra-podpis-transparent_16a81491.png"
-          alt="Petra Vajs — podpis"
-          style={{
-            height: "clamp(90px, 18vw, 180px)",
-            opacity: 0,
-            animation: "introFadeUp 1s cubic-bezier(0.22,1,0.36,1) 1.0s both",
-            filter: "brightness(0.15)",
-          }}
+         src="/manus-storage/petra-podpis-clean_7d23772d.png"
+            alt="Petra Vajs — podpis"
+            style={{
+              height: "clamp(80px, 18vw, 180px)",
+              opacity: 0,
+              animation: "introFadeUp 1s cubic-bezier(0.22,1,0.36,1) 1.0s both",
+            }}
         />
       </div>
 
