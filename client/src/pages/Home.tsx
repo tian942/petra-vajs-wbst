@@ -734,7 +734,7 @@ function MojaPotSection() {
             <div style={{ marginBottom: "2rem", paddingBottom: "1.5rem", borderBottom: "1px solid #E0D4C8" }}>
               <p style={{ fontFamily: "'Gadugi', 'Trebuchet MS', serif", fontSize: "1.4rem", fontWeight: 400, color: "#3D5240", marginBottom: "0.3rem" }}>Petra Vajs</p>
               <p style={{ fontFamily: "'Gadugi', 'Trebuchet MS', sans-serif", fontSize: "0.82rem", color: "#7A7A7A", letterSpacing: "0.05em", lineHeight: 1.7, margin: 0 }}>
-                Univ. dipl. spc. del.<br />
+                Univ. dipl. soc. del.<br />
                 Specializantka integrativne psihoterapije pod supervizijo
               </p>
             </div>
