@@ -17,7 +17,6 @@
  */
 
 import { useState, useEffect, useRef } from "react";
-import { trpc } from "@/lib/trpc";
 
 // ─── Navigation ──────────────────────────────────────────────────────────────
 
@@ -1227,67 +1226,6 @@ function FAQSection() {
 
 function KontaktSection() {
   const ref = useFadeIn();
-  const [formData, setFormData] = useState({
-    ime: "",
-    email: "",
-    namen: "",
-    sporocilo: "",
-    strinjanje: false,
-  });
-  const [submitted, setSubmitted] = useState(false);
-  const [errorMsg, setErrorMsg] = useState("");
-
-  const sendEmailMutation = trpc.contact.sendEmail.useMutation({
-    onSuccess: () => {
-      setSubmitted(true);
-      setErrorMsg("");
-    },
-    onError: (err) => {
-      setErrorMsg("Napaka pri pošiljanju. Prosim, pišite nam neposredno na ambulanta@sigmund-freud.si.");
-      console.error("[Email error]", err);
-    },
-  });
-
-  const sending = sendEmailMutation.isPending;
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!formData.strinjanje) {
-      alert("Prosim, strinjajte se z obdelavo osebnih podatkov.");
-      return;
-    }
-    setErrorMsg("");
-    sendEmailMutation.mutate({
-      ime: formData.ime,
-      email: formData.email,
-      namen: formData.namen || undefined,
-      sporocilo: formData.sporocilo,
-    });
-  };
-
-  const inputStyle = {
-    width: "100%",
-    padding: "0.9rem 1rem",
-    backgroundColor: "#FAF8F5",
-    border: "1px solid #C8B9A8",
-    borderRadius: "2px",
-    fontFamily: "'Gadugi', 'Trebuchet MS', sans-serif",
-    fontSize: "0.95rem",
-    color: "#3A3A3A",
-    outline: "none",
-    transition: "border-color 0.3s ease",
-    marginTop: "0.4rem",
-  };
-
-  const labelStyle = {
-    display: "block",
-    fontFamily: "'Gadugi', 'Trebuchet MS', sans-serif",
-    fontSize: "0.75rem",
-    letterSpacing: "0.12em",
-    textTransform: "uppercase" as const,
-    color: "#7A7A7A",
-    marginBottom: "0.2rem",
-  };
 
   return (
     <section
@@ -1352,134 +1290,30 @@ function KontaktSection() {
           </div>
         </div>
 
-        {/* Right: Form */}
+        {/* Right: Booking */}
         <div>
-          {submitted ? (
-            <div style={{
+          <div
+            style={{
               backgroundColor: "#EDE4D9",
               padding: "3rem",
               borderRadius: "2px",
               textAlign: "center",
-            }}>
-              <div style={{
-                width: "3rem",
-                height: "3rem",
-                borderRadius: "50%",
-                backgroundColor: "#3D5240",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                margin: "0 auto 1.5rem",
-                color: "#FAF8F5",
-                fontSize: "1.2rem",
-              }}>
-                ✓
-              </div>
-              <h3 style={{ color: "#3D5240", fontSize: "1.3rem", fontWeight: 400, marginBottom: "1rem" }}>
-                Sporočilo poslano!
-              </h3>
-              <p style={{ color: "#3A3A3A", lineHeight: 1.8 }}>
-                Hvala za vaše sporočilo. Odgovorila vam bom v najkrajšem možnem času.
-              </p>
-            </div>
-          ) : (
-            <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
-              <div>
-                <label style={labelStyle}>Ime in priimek *</label>
-                <input
-                  type="text"
-                  required
-                  value={formData.ime}
-                  onChange={(e) => setFormData({ ...formData, ime: e.target.value })}
-                  style={inputStyle}
-                  placeholder="Vaše ime in priimek"
-                />
-              </div>
-
-              <div>
-                <label style={labelStyle}>E-naslov *</label>
-                <input
-                  type="email"
-                  required
-                  value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  style={inputStyle}
-                  placeholder="vas@email.com"
-                />
-              </div>
-
-              <div>
-                <label style={labelStyle}>Namen</label>
-                <input
-                  type="text"
-                  value={formData.namen}
-                  onChange={(e) => setFormData({ ...formData, namen: e.target.value })}
-                  style={inputStyle}
-                  placeholder="Namen vašega sporočila"
-                />
-              </div>
-
-              <div>
-                <label style={labelStyle}>Vaše sporočilo *</label>
-                <textarea
-                  required
-                  value={formData.sporocilo}
-                  onChange={(e) => setFormData({ ...formData, sporocilo: e.target.value })}
-                  rows={5}
-                  style={{ ...inputStyle, resize: "vertical" as const }}
-                  placeholder="Napišite vaše sporočilo..."
-                />
-              </div>
-
-              <div style={{ display: "flex", gap: "0.75rem", alignItems: "flex-start" }}>
-                <input
-                  type="checkbox"
-                  id="strinjanje"
-                  checked={formData.strinjanje}
-                  onChange={(e) => setFormData({ ...formData, strinjanje: e.target.checked })}
-                  style={{
-                    marginTop: "3px",
-                    width: "16px",
-                    height: "16px",
-                    accentColor: "#3D5240",
-                    flexShrink: 0,
-                    cursor: "pointer",
-                  }}
-                />
-                <label
-                  htmlFor="strinjanje"
-                  style={{
-                    fontFamily: "'Gadugi', 'Trebuchet MS', sans-serif",
-                    fontSize: "0.85rem",
-                    color: "#7A7A7A",
-                    lineHeight: 1.6,
-                    cursor: "pointer",
-                  }}
-                >
-                  Strinjam se, da se moji podatki shranjujejo in obdelujejo v skladu s
-                  politiko zasebnosti.
-                </label>
-              </div>
-
-              <button
-                type="submit"
-                disabled={sending}
-                className="btn-sage"
-                style={{
-                  marginTop: "0.5rem",
-                  opacity: sending ? 0.7 : 1,
-                  width: "fit-content",
-                }}
-              >
-                {sending ? "Pošiljam..." : "Pošlji"}
-              </button>
-              {errorMsg && (
-                <p style={{ color: "#c0392b", fontSize: "0.85rem", lineHeight: 1.6, marginTop: "0.5rem" }}>
-                  {errorMsg}
-                </p>
-              )}
-            </form>
-          )}
+            }}
+          >
+            <p style={{ color: "#3A3A3A", lineHeight: 1.9, marginBottom: "2rem" }}>
+              Za naročilo na termin me kontaktirajte preko spletne strani
+              Sigmund Freud Inštituta.
+            </p>
+            <a
+              href="https://sigmund-freud.si/specializanti-pod-supervizijo/petra-vajs"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-sage"
+              style={{ display: "inline-block", textDecoration: "none" }}
+            >
+              NAROČI SE
+            </a>
+          </div>
         </div>
       </div>
 
