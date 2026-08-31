@@ -29,7 +29,7 @@ jobs:
 
       - run: pnpm install
 
-      - run: pnpm exec vite build --base=/petra-vajs-wbst/
+      - run: pnpm exec vite build
 
       - uses: actions/upload-pages-artifact@v3
         with:
