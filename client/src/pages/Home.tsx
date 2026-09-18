@@ -1049,7 +1049,7 @@ function CenikSection() {
               fontWeight: 300,
               fontFamily: "'Gadugi', 'Trebuchet MS', sans-serif",
             }}>
-              50 <span style={{ fontSize: "1rem" }}>EUR</span>
+              60 <span style={{ fontSize: "1rem" }}>EUR</span>
             </p>
           </div>
 
@@ -1076,7 +1076,7 @@ function CenikSection() {
               fontWeight: 300,
               fontFamily: "'Gadugi', 'Trebuchet MS', sans-serif",
             }}>
-              50 <span style={{ fontSize: "1rem" }}>EUR</span>
+              60 <span style={{ fontSize: "1rem" }}>EUR</span>
             </p>
           </div>
         </div>
